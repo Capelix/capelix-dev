@@ -52,7 +52,7 @@ export async function POST({ request }: { request: Request }) {
 							</td>
 							<td align="right" style="vertical-align:middle; height: 100%; display: flex; justify-content: center; align-items: center;">
 								<div style="background:rgba(255,255,255,0.12); display: flex; justify-content: center; align-items: center; flex-direction: row; gap: .5rem; padding:8px; border-radius:8px; color:#fff; font-weight:700; font-size:13px;">
-									<img src="https://capelix.dev/logo.svg" style="width: 2rem;">
+									<img src="https://capelix.dev/brand-svg.svg" style="width: 2rem;">
 								Capelix
 								</div>
 							</td>

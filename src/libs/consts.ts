@@ -17,7 +17,7 @@ export const footerLinks = (): FooterLink[] => {
 			icon: GitHub,
 		},
 		{
-			href: 'https://instagram.com/Capelix',
+			href: 'https://instagram.com/capelixx',
 			icon: Instagram,
 		},
 		{
