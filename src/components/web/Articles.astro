@@ -17,7 +17,7 @@ const articles = articlesService()
 		{i18n.ARTICLES}
 	</MainTitle>
 
-	<div class='flex w-full flex-col gap-2'>
+	<div class='flex w-full flex-col gap-3'>
 		{articles.slice(0, 4).map((story) => <HomeArticleCard {...story} />)}
 	</div>
 

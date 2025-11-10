@@ -8,6 +8,13 @@ export default {
 				secondary: '#64748b',
 				accent: '#0891b2',
 				main: '#155e75',
+				success: '#10b981',
+				warning: '#f59e0b',
+				glass: {
+					DEFAULT: 'rgba(255, 255, 255, 0.05)',
+					light: 'rgba(255, 255, 255, 0.1)',
+					dark: 'rgba(0, 0, 0, 0.3)',
+				},
 			},
 			fontFamily: {
 				ubuntu: ['Ubuntu', 'Onest Variable'],

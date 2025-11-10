@@ -29,7 +29,7 @@ const i18n = getI18N({ currentLocale })
 >
 	<div class='md:1/2 w-full'>
 		<div
-			class='relative col-span-6 row-span-5 flex transform flex-col items-center gap-8 overflow-clip rounded-xl border shadow-xl transition duration-500 ease-in-out dark:border-slate-800 sm:hover:border-slate-300 sm:hover:bg-slate-300/50 sm:group-hover:-translate-y-1 sm:group-hover:translate-x-1 sm:group-hover:shadow-2xl dark:sm:hover:border-slate-700 dark:sm:hover:bg-slate-800/50'
+			class='relative col-span-6 row-span-5 flex transform flex-col items-center gap-8 overflow-clip rounded-xl border-2 border-primary/10 bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 shadow-lg shadow-accent/5 backdrop-blur-sm transition-all duration-500 ease-in-out sm:hover:border-accent/30 sm:hover:bg-gradient-to-br sm:hover:from-accent/10 sm:hover:via-primary/10 sm:hover:to-accent/10 sm:group-hover:-translate-y-2 sm:group-hover:translate-x-1 sm:group-hover:shadow-2xl sm:group-hover:shadow-accent/20 dark:border-slate-800/50 dark:from-primary/10 dark:via-accent/10 dark:to-primary/5 dark:sm:hover:border-accent/40'
 		>
 			<img
 				src={imgUrl}
@@ -38,22 +38,23 @@ const i18n = getI18N({ currentLocale })
 				height='720'
 				decoding='async'
 				loading='lazy'
-				class='h-56 w-full object-cover object-top transition duration-500 sm:h-full sm:scale-110 sm:group-hover:scale-105'
+				class='h-56 w-full object-cover object-top transition-all duration-500 sm:h-full sm:scale-110 sm:group-hover:scale-105 sm:group-hover:brightness-110'
 			/>
+			<div class='absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 sm:group-hover:opacity-100' />
 		</div>
 	</div>
 
-	<div class='flex w-full flex-col gap-2 md:max-w-lg'>
-		<h3 class='text-2xl font-bold text-slate-800 dark:text-slate-200'>
+	<div class='flex w-full flex-col gap-3 md:max-w-lg'>
+		<h3 class='text-2xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent transition-all duration-300 sm:group-hover:from-accent sm:group-hover:to-accent/80 dark:from-slate-200 dark:to-slate-400'>
 			{title}
 		</h3>
 
-		<ul class='mb-2 flex flex-row gap-x-2'>
+		<ul class='mb-2 flex flex-row flex-wrap gap-x-2 gap-y-2'>
 			{
 				tags.map((tag) => (
 					<li>
-						<span class={`flex gap-x-2 rounded-full px-2 py-1 text-xs ${tag.class}`}>
-							<tag.icon class={`size-4 ${tag.iconColor}`} />
+						<span class={`flex gap-x-2 rounded-full border border-primary/20 bg-gradient-to-br from-primary/10 to-accent/10 px-3 py-1.5 text-xs font-semibold shadow-sm transition-all duration-300 group-hover:border-accent/30 group-hover:shadow-md group-hover:shadow-accent/10 ${tag.class}`}>
+							<tag.icon class={`size-4 transition-transform duration-300 group-hover:scale-110 ${tag.iconColor}`} />
 							{tag.name}
 						</span>
 					</li>
@@ -61,18 +62,18 @@ const i18n = getI18N({ currentLocale })
 			}
 		</ul>
 
-		<p class='dark:text-primary mt-2 h-full text-pretty text-slate-600'>
+		<p class='mt-2 h-full text-pretty leading-relaxed text-slate-600 dark:text-primary'>
 			{description}
 		</p>
 
 		<footer class='mt-4 flex h-fit w-full items-end justify-start gap-x-4'>
 			<LinkButton href={projectUrl}>
-				<Send class='size-6' />
+				<Send class='size-6 transition-transform duration-300 group-hover:translate-x-1' />
 				{i18n.SQUINT}
 			</LinkButton>
 
 			<LinkButton href={gitCodeUrl}>
-				<GitHub class='size-6' />
+				<GitHub class='size-6 transition-transform duration-300 group-hover:scale-110' />
 				{i18n.CODE}
 			</LinkButton>
 		</footer>

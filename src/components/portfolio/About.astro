@@ -20,7 +20,7 @@ const i18n = getI18N({ currentLocale })
 			id='img-container'
 			href='https://capelix.dev/portfolio'
 			rel='noopener noreferrer'
-			class='group relative size-20 overflow-hidden rounded-full shadow-lg shadow-black/30 ease-in-out sm:size-36 dark:shadow-black/60'
+			class='group relative size-20 overflow-hidden rounded-full shadow-lg shadow-black/30 ring-2 ring-accent/20 transition-all duration-300 ease-in-out sm:size-36 sm:hover:ring-accent/40 sm:hover:shadow-xl sm:hover:shadow-accent/20 sm:hover:scale-105 dark:shadow-black/60'
 		>
 			<img
 				src='https://capelix.dev/images/main-pic.webp'
@@ -29,19 +29,20 @@ const i18n = getI18N({ currentLocale })
 				width='630'
 				alt='Rikelvi Capellán portfolio picture'
 			/>
+			<div class='absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/10 opacity-0 transition-opacity duration-300 sm:group-hover:opacity-100' />
 		</a>
 
-		<div class='flex flex-col items-start'>
-			<h1 class='text-3xl text-slate-800 sm:text-4xl md:text-5xl dark:text-slate-200'>
-				<strong>Rikelvi Capellán</strong>
+		<div class='flex flex-col items-start gap-2'>
+			<h1 class='text-3xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent sm:text-4xl md:text-5xl dark:from-slate-200 dark:to-slate-400'>
+				Rikelvi Capellán
 			</h1>
-			<h3 class='text-md text-slate-800 sm:text-xl dark:text-slate-200'>
-				<strong>{i18n.ABOUT_TEXT_1}</strong>
+			<h3 class='text-md font-semibold text-slate-700 sm:text-xl dark:text-slate-300'>
+				{i18n.ABOUT_TEXT_1}
 			</h3>
 
-			<a href='https://www.linkedin.com/in/Capelix/' target='_blank' rel='noopener noreferrer'>
+			<a href='https://www.linkedin.com/in/Capelix/' target='_blank' rel='noopener noreferrer' class='group/badge'>
 				<Badge>
-					<Check class='mr-2 h-5 w-5 text-accent' />
+					<Check class='mr-2 h-5 w-5 text-accent transition-transform duration-300 group-hover/badge:scale-110' />
 					<h5 class='font-bold text-accent'>{i18n.AVAILABLE}</h5>
 				</Badge>
 			</a>
@@ -51,17 +52,19 @@ const i18n = getI18N({ currentLocale })
 	<Divider />
 
 	<div class='flex w-full flex-col items-center'>
-		<h3 class='text-md font-semibold text-slate-600 sm:text-balance sm:text-xl dark:text-primary'>
-			{i18n.ABOUT_TEXT_2}
-			<strong class='text-accent'>{i18n.ABOUT_TEXT_3}</strong>
-			{i18n.ABOUT_TEXT_6}
-			<strong class='text-accent'>{i18n.ABOUT_TEXT_4}</strong>
-			{i18n.FOOTER_TXT_2}
-			<strong class='text-accent'>{i18n.ABOUT_TEXT_5}</strong>
-			{i18n.ABOUT_TEXT_6}
-			<strong class='text-accent'>{i18n.ABOUT_TEXT_7}</strong>
-			{i18n.ABOUT_TEXT_8}
-		</h3>
+		<div class='relative w-full rounded-2xl bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 p-6 backdrop-blur-sm sm:p-8'>
+			<h3 class='text-md font-semibold leading-relaxed text-slate-600 sm:text-balance sm:text-xl dark:text-primary'>
+				{i18n.ABOUT_TEXT_2}
+				<strong class='text-accent font-bold'>{i18n.ABOUT_TEXT_3}</strong>
+				{i18n.ABOUT_TEXT_6}
+				<strong class='text-accent font-bold'>{i18n.ABOUT_TEXT_4}</strong>
+				{i18n.FOOTER_TXT_2}
+				<strong class='text-accent font-bold'>{i18n.ABOUT_TEXT_5}</strong>
+				{i18n.ABOUT_TEXT_6}
+				<strong class='text-accent font-bold'>{i18n.ABOUT_TEXT_7}</strong>
+				{i18n.ABOUT_TEXT_8}
+			</h3>
+		</div>
 
 		<nav class='mb-2 mt-8 flex w-full flex-wrap gap-3'>
 			<SocialPill

@@ -11,23 +11,27 @@ const { title, description, date } = Astro.props
 ---
 
 <span
-	class='fade-up-anim absolute -start-3 flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 ring-8 ring-slate-300 dark:bg-cyan-950 dark:ring-slate-900'
+	class='fade-up-anim absolute -start-3 flex size-6 items-center justify-center rounded-full bg-gradient-to-br from-accent/30 to-accent/20 shadow-lg shadow-accent/20 ring-4 ring-slate-900 transition-all duration-300 group-hover:scale-110 group-hover:shadow-accent/30 group-hover:ring-accent/30'
 >
-	<Briefcase class='text-accent size-4' />
+	<Briefcase class='size-4 text-accent transition-all duration-300 group-hover:scale-110' />
 </span>
 
-<h3 class='fade-up-anim text-accent ml-2 flex items-center text-xl font-bold'>
-	{title}
-</h3>
-
-<time
-	class='fade-up-anim text-primary dark:text-secondary mb-3 ml-2 block text-sm font-normal italic leading-none'
+<div
+	class='fade-up-anim ml-2 rounded-xl bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-4 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:shadow-lg group-hover:shadow-accent/10'
 >
-	{date}
-</time>
+	<h3
+		class='mb-2 flex items-center text-xl font-bold text-accent transition-colors duration-300 group-hover:text-accent/90'
+	>
+		{title}
+	</h3>
 
-<p
-	class='fade-up-anim dark:text-primary mb-4 ml-2 text-pretty text-base font-normal text-slate-600'
->
-	{description}
-</p>
+	<time
+		class='mb-3 block text-sm font-semibold italic leading-none text-primary opacity-80 dark:text-secondary'
+	>
+		{date}
+	</time>
+
+	<p class='text-pretty text-base font-normal leading-relaxed text-slate-600 dark:text-primary'>
+		{description}
+	</p>
+</div>

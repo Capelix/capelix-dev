@@ -17,16 +17,18 @@ const i18n = getI18N({ currentLocale })
 		{i18n.CONTACT}
 	</MainTitle>
 
-	<div class='mt-4 flex w-full flex-col gap-4 sm:flex-row sm:justify-between'>
-		<div class='flex-1'>
-			<p class='mb-6 text-pretty text-slate-600 dark:text-primary'>
-				<strong class='text-accent'>{i18n.CONTACT_TXT_1}</strong>
+	<div class='mt-6 flex w-full flex-col gap-6 sm:flex-row sm:justify-between lg:gap-8'>
+		<div
+			class='flex-1 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 sm:p-8 dark:from-primary/10 dark:to-primary/5'
+		>
+			<p class='mb-6 text-pretty text-slate-600 transition-colors duration-300 dark:text-primary'>
+				<strong class='font-semibold text-accent'>{i18n.CONTACT_TXT_1}</strong>
 				{i18n.CONTACT_TXT_2}
 				<a
 					rel='noopener noreferrer'
 					href='https://instagram.com/capelixx'
 					target='_blank'
-					class='font-bold text-accent transition-colors active:text-slate-700 active:underline sm:hover:text-slate-700 sm:hover:underline dark:active:text-slate-300 dark:sm:hover:text-slate-300'
+					class='font-bold text-accent transition-all duration-300 active:text-accent/80 active:underline sm:hover:text-accent/80 sm:hover:underline'
 					>Instagram</a
 				>
 				{i18n.OR}
@@ -34,28 +36,28 @@ const i18n = getI18N({ currentLocale })
 					rel='noopener noreferrer'
 					href='https://twitter.com/capelixxx'
 					target='_blank'
-					class='font-bold text-accent transition-colors active:text-slate-700 active:underline sm:hover:text-slate-700 sm:hover:underline dark:active:text-slate-300 dark:sm:hover:text-slate-300'
+					class='font-bold text-accent transition-all duration-300 active:text-accent/80 active:underline sm:hover:text-accent/80 sm:hover:underline'
 					>X</a
 				>.
 			</p>
 
-			<p class='mb-6 text-pretty text-slate-600 dark:text-primary'>
+			<p class='mb-6 text-pretty text-slate-600 transition-colors duration-300 dark:text-primary'>
 				{i18n.CONTACT_TXT_3}
-				<strong class='text-accent'>{i18n.CONTACT_TXT_4}</strong>
+				<strong class='font-semibold text-accent'>{i18n.CONTACT_TXT_4}</strong>
 				{i18n.CONTACT_TXT_5}
 			</p>
 
 			<div
-				class='flex h-fit w-fit flex-row items-center justify-center gap-2 rounded-xl bg-main bg-opacity-20 px-2 text-accent'
+				class='flex h-fit w-fit flex-row items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-accent/10 to-accent/30 px-4 py-2 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-accent/5'
 			>
 				<h5 id='email' class='font-bold text-accent'>{email}</h5>
 
 				<Copy
 					id='copyEmailIcon'
-					class='inline-block h-5 w-5 cursor-pointer transition-transform hover:scale-105 hover:text-slate-600 dark:hover:text-primary'
+					class='inline-block size-5 cursor-pointer text-accent transition-all duration-300 hover:scale-110 hover:text-accent/80 active:scale-95'
 				/>
 
-				<Check id='copiedEmailIcon' class='hidden h-5 w-5 text-accent' />
+				<Check id='copiedEmailIcon' class='hidden size-5 text-accent' />
 			</div>
 		</div>
 

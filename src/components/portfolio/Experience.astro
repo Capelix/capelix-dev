@@ -16,10 +16,10 @@ const EXPERIENCE = experiencesService(currentLocale)
 		{i18n.WORK_EXPERIENCE}
 	</MainTitle>
 
-	<ol class='border-accent relative ml-3 w-11/12 border-s dark:border-slate-800'>
+	<ol class='relative ml-3 w-11/12 border-s-2 border-accent/30 dark:border-accent/20'>
 		{
 			EXPERIENCE.map((experience) => (
-				<li class='mb-10 ms-6'>
+				<li class='group mb-10 ms-6'>
 					<ExperienceItem {...experience} />
 				</li>
 			))

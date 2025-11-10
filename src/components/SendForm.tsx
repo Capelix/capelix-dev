@@ -38,39 +38,45 @@ export const SendForm = () => {
 	}
 
 	return (
-		<form ref={formRef} onSubmit={handleSubmit} className='flex-1 pt-6 sm:w-full sm:pt-0'>
-			<span className='text-sm font-light italic text-secondary'>{i18n.CONTACT_TXT_6}</span>
+		<form
+			ref={formRef}
+			onSubmit={handleSubmit}
+			className='flex-1 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 dark:from-primary/10 dark:to-primary/5 sm:w-full sm:p-8'
+		>
+			<span className='text-sm font-light italic text-secondary/80'>
+				{i18n.CONTACT_TXT_6}
+			</span>
 
-			<div className='mt-2 flex flex-col gap-2'>
-				<label className='mb-1 inline-flex flex-col text-slate-400'>
-					{i18n.NAME}*
+			<div className='mt-4 flex flex-col gap-4'>
+				<label className='inline-flex flex-col gap-2'>
+					<span className='text-sm font-medium text-primary'>{i18n.NAME}*</span>
 					<input
 						required
 						autoComplete='name'
-						className='h-10 rounded-lg bg-accent/10 p-2 text-primary outline-none transition-all placeholder:text-slate-500 focus:outline-1 focus:outline-main'
+						className='h-11 rounded-xl bg-white/50 px-4 py-2 text-primary outline-none transition-all duration-300 placeholder:text-secondary/60 focus:bg-white/80 focus:shadow-md focus:shadow-accent/10 dark:bg-slate-800/50 dark:focus:bg-slate-800/80'
 						type='text'
 						name='user_name'
 						placeholder='Jane Doe'
 					/>
 				</label>
 
-				<label className='mb-1 inline-flex flex-col text-slate-400'>
-					{i18n.EMAIL}*
+				<label className='inline-flex flex-col gap-2'>
+					<span className='text-sm font-medium text-primary'>{i18n.EMAIL}*</span>
 					<input
 						required
 						autoComplete='email'
-						className='h-10 rounded-lg bg-accent/10 p-2 text-primary outline-none transition-all placeholder:text-slate-500 focus:outline-1 focus:outline-main'
+						className='h-11 rounded-xl bg-white/50 px-4 py-2 text-primary outline-none transition-all duration-300 placeholder:text-secondary/60 focus:bg-white/80 focus:shadow-md focus:shadow-accent/10 dark:bg-slate-800/50 dark:focus:bg-slate-800/80'
 						type='email'
 						name='user_email'
 						placeholder='your@email.com'
 					/>
 				</label>
 
-				<label className='mb-1 inline-flex flex-col text-slate-400'>
-					{i18n.MESSAGE}*
+				<label className='inline-flex flex-col gap-2'>
+					<span className='text-sm font-medium text-primary'>{i18n.MESSAGE}*</span>
 					<textarea
 						required
-						className='h-28 rounded-lg bg-accent/10 p-2 text-primary outline-none transition-all placeholder:text-slate-500 focus:outline-1 focus:outline-main'
+						className='min-h-32 rounded-xl bg-white/50 px-4 py-3 text-primary outline-none transition-all duration-300 placeholder:text-secondary/60 focus:bg-white/80 focus:shadow-md focus:shadow-accent/10 dark:bg-slate-800/50 dark:focus:bg-slate-800/80'
 						name='message'
 						placeholder={i18n.MESSAGE_PLACEHOLDER}
 					></textarea>
@@ -80,7 +86,11 @@ export const SendForm = () => {
 			<button
 				type='submit'
 				{...(!sending ? {} : { disabled: true })}
-				className={`mt-4 flex w-full flex-row items-center justify-center gap-2 ${!sending ? 'cursor-pointer bg-accent text-primary' : 'cursor-not-allowed bg-main text-secondary'} ${sending ? '' : 'active:border-accent active:bg-transparent active:text-main sm:hover:border-main sm:hover:bg-transparent sm:hover:text-accent'} rounded-xl border border-transparent px-3 py-2 text-lg font-bold transition`}
+				className={`mt-6 flex w-full flex-row items-center justify-center gap-2 rounded-xl px-4 py-3 text-lg font-bold transition-all duration-300 ${
+					!sending
+						? 'cursor-pointer bg-gradient-to-r from-accent to-accent/90 text-white shadow-md shadow-accent/20 hover:scale-[1.02] hover:shadow-lg hover:shadow-accent/30 active:scale-[0.98]'
+						: 'cursor-not-allowed bg-gradient-to-r from-main/50 to-main/40 text-secondary shadow-sm'
+				}`}
 			>
 				{!sending ? (
 					<svg
