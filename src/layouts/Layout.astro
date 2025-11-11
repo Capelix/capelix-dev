@@ -10,6 +10,7 @@ import WhatsAppButton from '@/components/ui/WhatsAppButton.astro'
 import type { Preload } from '@/interfaces/preload'
 import '@fontsource-variable/onest'
 import '@fontsource/ubuntu'
+import SpeedInsights from '@vercel/speed-insights/astro'
 import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
@@ -36,6 +37,8 @@ const { title, description, preload, canonical, image } = Astro.props
 		<ViewTransitions />
 	</head>
 	<body class='relative overflow-x-hidden'>
+		<SpeedInsights />
+
 		<div
 			class='absolute bottom-0 top-0 z-[-2] min-h-screen w-full bg-slate-100 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(203,213,225,0.5),rgba(241,245,249,0.9))] dark:bg-slate-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(34,211,238,0.2),rgba(241,245,249,0))]'
 		>
