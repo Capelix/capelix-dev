@@ -360,19 +360,14 @@ export default function GalleryAccess({ locale = "en" }: GalleryAccessProps) {
 
 	if (!gallery) {
 		return (
-			<section className="mx-auto w-full max-w-xl rounded-2xl border border-slate-200 bg-white/70 p-8 shadow-lg backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
-				<h1 className="text-center text-2xl font-bold text-slate-900 dark:text-slate-50">
+			<section className="mx-auto w-full max-w-xl rounded-2xl border border-slate-800 bg-slate-900/80 p-8 shadow-lg backdrop-blur">
+				<h1 className="text-center text-2xl font-bold text-slate-50">
 					{i18n.GALLERY_ACCESS_TITLE}
 				</h1>
-				<p className="mt-2 text-center text-sm text-slate-600 dark:text-slate-300">
-					{i18n.GALLERY_ACCESS_SUBTITLE}
-				</p>
+				<p className="mt-2 text-center text-sm text-slate-300">{i18n.GALLERY_ACCESS_SUBTITLE}</p>
 				<form className="mt-8 space-y-4" onSubmit={handleVerifyPin}>
 					<div className="flex flex-col gap-2">
-						<label
-							htmlFor="pin"
-							className="text-sm font-semibold text-slate-700 dark:text-slate-200"
-						>
+						<label htmlFor="pin" className="text-sm font-semibold text-slate-200">
 							{i18n.GALLERY_PIN_LABEL}
 						</label>
 						<input
@@ -382,7 +377,7 @@ export default function GalleryAccess({ locale = "en" }: GalleryAccessProps) {
 							value={pin}
 							autoComplete="off"
 							onChange={(event) => setPin(event.target.value)}
-							className="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-base font-medium text-slate-900 outline-none transition focus:border-main focus:ring-2 focus:ring-main/40 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-50"
+							className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-base font-medium text-slate-50 outline-none transition focus:border-main focus:ring-2 focus:ring-main/40"
 							placeholder={i18n.GALLERY_PIN_PLACEHOLDER}
 						/>
 						{pinError ? <p className="text-sm text-red-500">{pinError}</p> : null}
@@ -407,17 +402,15 @@ export default function GalleryAccess({ locale = "en" }: GalleryAccessProps) {
 
 	return (
 		<>
-			<section className="mx-auto flex w-full max-w-6xl flex-col gap-6 rounded-2xl border border-slate-200 bg-white/70 p-6 shadow-xl backdrop-blur md:p-10 dark:border-slate-800 dark:bg-slate-900/80">
+			<section className="mx-auto flex w-full max-w-6xl flex-col gap-6 rounded-2xl border border-slate-800 bg-slate-900/80 p-6 shadow-xl backdrop-blur md:p-10">
 				<header className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
 					<div>
-						<h2 className="text-2xl font-bold text-slate-900 dark:text-slate-50">{galleryTitle}</h2>
+						<h2 className="text-2xl font-bold text-slate-50">{galleryTitle}</h2>
 						{gallery.description ? (
-							<p className="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-300">
-								{gallery.description}
-							</p>
+							<p className="mt-2 max-w-2xl text-sm text-slate-300">{gallery.description}</p>
 						) : null}
 						{gallery.eventDate ? (
-							<p className="mt-1 text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
+							<p className="mt-1 text-xs uppercase tracking-wide text-slate-400">
 								{i18n.GALLERY_EVENT_DATE_LABEL}{" "}
 								{new Date(gallery.eventDate).toLocaleDateString(normalizedLocale)}
 							</p>
@@ -426,14 +419,14 @@ export default function GalleryAccess({ locale = "en" }: GalleryAccessProps) {
 					<button
 						type="button"
 						onClick={resetGallery}
-						className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-main hover:text-main focus:outline-none focus:ring-2 focus:ring-main/40 dark:border-slate-700 dark:text-slate-200"
+						className="inline-flex items-center gap-2 rounded-full border border-slate-700 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-200 transition hover:border-main hover:text-main focus:outline-none focus:ring-2 focus:ring-main/40"
 					>
 						{i18n.GALLERY_USE_ANOTHER_PIN}
 					</button>
 				</header>
 
 				{photos.length === 0 ? (
-					<div className="rounded-xl border border-dashed border-slate-300 bg-white/60 p-10 text-center text-slate-500 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-300">
+					<div className="rounded-xl border border-dashed border-slate-700 bg-slate-900/60 p-10 text-center text-slate-300">
 						<p>{i18n.GALLERY_NO_PHOTOS}</p>
 					</div>
 				) : (
@@ -453,11 +446,11 @@ export default function GalleryAccess({ locale = "en" }: GalleryAccessProps) {
 									className={`group relative overflow-hidden rounded-2xl border transition focus:outline-none focus-visible:ring-2 focus-visible:ring-main/60 ${
 										isSelected
 											? "border-main bg-main/10 shadow-lg shadow-main/20"
-											: "border-transparent bg-white/80 shadow-md hover:shadow-lg dark:bg-slate-800/80"
+											: "border-transparent bg-slate-800/80 shadow-md hover:shadow-lg"
 									}`}
 								>
 									<div
-										className={`relative w-full overflow-hidden bg-slate-100 dark:bg-slate-950 ${
+										className={`relative w-full overflow-hidden bg-slate-950 ${
 											hasDimensions ? "" : "h-64"
 										}`}
 										style={aspectStyle}
@@ -479,7 +472,7 @@ export default function GalleryAccess({ locale = "en" }: GalleryAccessProps) {
 											{isSelected ? i18n.GALLERY_SELECTED_BADGE : i18n.GALLERY_TAP_TO_SELECT}
 										</span>
 									</div>
-									<div className="flex items-center justify-between gap-2 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200">
+									<div className="flex items-center justify-between gap-2 px-4 py-3 text-sm font-medium text-slate-200">
 										<span className="truncate" title={photo.image_code}>
 											{photo.image_code}
 										</span>
@@ -497,13 +490,11 @@ export default function GalleryAccess({ locale = "en" }: GalleryAccessProps) {
 					</div>
 				)}
 
-				<div className="sticky bottom-2 flex flex-col items-start gap-3 rounded-xl bg-slate-100/60 p-4 md:flex-row md:items-center md:justify-between dark:bg-slate-800/60">
+				<div className="sticky bottom-2 flex flex-col items-start gap-3 rounded-xl bg-slate-800/60 p-4 md:flex-row md:items-center md:justify-between">
 					<div>
-						<p className="text-sm font-semibold text-slate-700 dark:text-slate-200">
-							{selectedSummary}
-						</p>
+						<p className="text-sm font-semibold text-slate-200">{selectedSummary}</p>
 						{selectionMessage ? (
-							<p className="text-xs text-main dark:text-main/80">{selectionMessage}</p>
+							<p className="text-xs text-main text-main/80">{selectionMessage}</p>
 						) : null}
 					</div>
 					<button

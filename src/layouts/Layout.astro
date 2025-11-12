@@ -3,6 +3,7 @@ import Contact from "@/components/Contact.astro"
 import Footer from "@/components/Footer.astro"
 import SectionContainer from "@/components/SectionContainer.astro"
 import SEO from "@/components/SEO.astro"
+import BackgroundGradient from "@/components/ui/BackgroundGradient.astro"
 import GoToTop from "@/components/ui/GoToTop.astro"
 import Header from "@/components/ui/Header.astro"
 import Toast from "@/components/ui/Toast.astro"
@@ -42,10 +43,7 @@ const locale = getActiveLocale(Astro)
 	<body class="relative overflow-x-hidden">
 		<SpeedInsights />
 
-		<div
-			class="absolute bottom-0 top-0 z-[-2] min-h-screen w-full bg-slate-100 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(203,213,225,0.5),rgba(241,245,249,0.9))] dark:bg-slate-950 dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(34,211,238,0.2),rgba(241,245,249,0))]"
-		>
-		</div>
+		<BackgroundGradient />
 
 		<WhatsAppButton />
 		<GoToTop />

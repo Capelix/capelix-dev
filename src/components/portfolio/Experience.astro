@@ -1,25 +1,25 @@
 ---
-import ExperienceItem from '@/components/ExperienceItem.astro'
-import Timeline from '@/icons/Timeline.astro'
-import { getI18N } from '@/languages/index.ts'
-import { experiencesService } from '@/services/experiences'
-import MainTitle from '../MainTitle.astro'
+import ExperienceItem from "@/components/ExperienceItem.astro"
+import Timeline from "@/icons/Timeline.astro"
+import { getI18N } from "@/languages/index.ts"
+import { experiencesService } from "@/services/experiences"
+import MainTitle from "../MainTitle.astro"
 
 const { currentLocale } = Astro
 const i18n = getI18N({ currentLocale })
 const EXPERIENCE = experiencesService(currentLocale)
 ---
 
-<div class='flex w-full max-w-4xl flex-col sm:w-11/12 md:w-8/12'>
+<div class="flex w-full max-w-4xl flex-col sm:w-11/12 md:w-8/12">
 	<MainTitle>
-		<Timeline class='size-8' />
+		<Timeline class="size-8" />
 		{i18n.WORK_EXPERIENCE}
 	</MainTitle>
 
-	<ol class='relative ml-3 w-11/12 border-s-2 border-accent/30 dark:border-accent/20'>
+	<ol class="relative ml-3 w-11/12 border-s-2 border-accent/20">
 		{
 			EXPERIENCE.map((experience) => (
-				<li class='group mb-10 ms-6'>
+				<li class="group mb-10 ms-6">
 					<ExperienceItem {...experience} />
 				</li>
 			))

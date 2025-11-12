@@ -1,5 +1,5 @@
 ---
-import Briefcase from '@/icons/Briefcase.astro'
+import Briefcase from "@/icons/Briefcase.astro"
 
 interface Props {
 	title: string
@@ -11,27 +11,25 @@ const { title, description, date } = Astro.props
 ---
 
 <span
-	class='fade-up-anim absolute -start-3 flex size-6 items-center justify-center rounded-full bg-gradient-to-br from-accent/30 to-accent/20 shadow-lg shadow-accent/20 ring-4 ring-slate-900 transition-all duration-300 group-hover:scale-110 group-hover:shadow-accent/30 group-hover:ring-accent/30'
+	class="fade-up-anim absolute -start-3 flex size-6 items-center justify-center rounded-full bg-gradient-to-br from-accent/30 to-accent/20 shadow-lg shadow-accent/20 ring-4 ring-slate-900 transition-all duration-300 group-hover:scale-110 group-hover:shadow-accent/30 group-hover:ring-accent/30"
 >
-	<Briefcase class='size-4 text-accent transition-all duration-300 group-hover:scale-110' />
+	<Briefcase class="size-4 text-accent transition-all duration-300 group-hover:scale-110" />
 </span>
 
 <div
-	class='fade-up-anim ml-2 rounded-xl bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-4 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:shadow-lg group-hover:shadow-accent/10'
+	class="fade-up-anim ml-2 rounded-xl bg-gradient-to-br from-primary/10 via-accent/10 to-primary/5 p-4 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:shadow-lg group-hover:shadow-accent/10"
 >
 	<h3
-		class='mb-2 flex items-center text-xl font-bold text-accent transition-colors duration-300 group-hover:text-accent/90'
+		class="mb-2 flex items-center text-xl font-bold text-accent transition-colors duration-300 group-hover:text-accent/90"
 	>
 		{title}
 	</h3>
 
-	<time
-		class='mb-3 block text-sm font-semibold italic leading-none text-primary opacity-80 dark:text-secondary'
-	>
+	<time class="mb-3 block text-sm font-semibold italic leading-none text-secondary opacity-80">
 		{date}
 	</time>
 
-	<p class='text-pretty text-base font-normal leading-relaxed text-slate-600 dark:text-primary'>
+	<p class="text-pretty text-base font-normal leading-relaxed text-primary">
 		{description}
 	</p>
 </div>

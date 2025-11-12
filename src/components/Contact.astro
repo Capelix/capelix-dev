@@ -6,7 +6,7 @@ import Check from "@/icons/Check.astro"
 import Copy from "@/icons/Copy.astro"
 import { getActiveLocale, getI18N } from "@/languages/index.ts"
 
-const email: string = 'rikelvicapellan15@gmail.com'
+const email: string = "rikelvicapellan15@gmail.com"
 interface Props {
 	locale?: string
 }
@@ -16,53 +16,53 @@ const locale = forcedLocale ?? getActiveLocale(Astro)
 const i18n = getI18N({ currentLocale: locale })
 ---
 
-<div class='flex w-full max-w-4xl flex-col sm:w-11/12 md:w-8/12'>
+<div class="flex w-full max-w-4xl flex-col sm:w-11/12 md:w-8/12">
 	<MainTitle>
-		<Chat class='size-8' />
+		<Chat class="size-8" />
 		{i18n.CONTACT}
 	</MainTitle>
 
-	<div class='mt-6 flex w-full flex-col gap-6 sm:flex-row sm:justify-between lg:gap-8'>
+	<div class="mt-6 flex w-full flex-col gap-6 sm:flex-row sm:justify-between lg:gap-8">
 		<div
-			class='flex-1 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 sm:p-8 dark:from-primary/10 dark:to-primary/5'
+			class="flex-1 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-6 shadow-sm backdrop-blur-sm transition-all duration-300 sm:p-8"
 		>
-			<p class='mb-6 text-pretty text-slate-600 transition-colors duration-300 dark:text-primary'>
-				<strong class='font-semibold text-accent'>{i18n.CONTACT_TXT_1}</strong>
+			<p class="mb-6 text-pretty text-primary transition-colors duration-300">
+				<strong class="font-semibold text-accent">{i18n.CONTACT_TXT_1}</strong>
 				{i18n.CONTACT_TXT_2}
 				<a
-					rel='noopener noreferrer'
-					href='https://instagram.com/capelixx'
-					target='_blank'
-					class='font-bold text-accent transition-all duration-300 active:text-accent/80 active:underline sm:hover:text-accent/80 sm:hover:underline'
+					rel="noopener noreferrer"
+					href="https://instagram.com/capelixx"
+					target="_blank"
+					class="font-bold text-accent transition-all duration-300 active:text-accent/80 active:underline sm:hover:text-accent/80 sm:hover:underline"
 					>Instagram</a
 				>
 				{i18n.OR}
 				<a
-					rel='noopener noreferrer'
-					href='https://twitter.com/capelixxx'
-					target='_blank'
-					class='font-bold text-accent transition-all duration-300 active:text-accent/80 active:underline sm:hover:text-accent/80 sm:hover:underline'
+					rel="noopener noreferrer"
+					href="https://twitter.com/capelixxx"
+					target="_blank"
+					class="font-bold text-accent transition-all duration-300 active:text-accent/80 active:underline sm:hover:text-accent/80 sm:hover:underline"
 					>X</a
 				>.
 			</p>
 
-			<p class='mb-6 text-pretty text-slate-600 transition-colors duration-300 dark:text-primary'>
+			<p class="mb-6 text-pretty text-primary transition-colors duration-300">
 				{i18n.CONTACT_TXT_3}
-				<strong class='font-semibold text-accent'>{i18n.CONTACT_TXT_4}</strong>
+				<strong class="font-semibold text-accent">{i18n.CONTACT_TXT_4}</strong>
 				{i18n.CONTACT_TXT_5}
 			</p>
 
 			<div
-				class='flex h-fit w-fit flex-row items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-accent/10 to-accent/30 px-4 py-2 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-accent/5'
+				class="flex h-fit w-fit flex-row items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-accent/10 to-accent/30 px-4 py-2 shadow-sm transition-all duration-300 hover:shadow-md hover:shadow-accent/5"
 			>
-				<h5 id='email' class='font-bold text-accent'>{email}</h5>
+				<h5 id="email" class="font-bold text-accent">{email}</h5>
 
 				<Copy
-					id='copyEmailIcon'
-					class='inline-block size-5 cursor-pointer text-accent transition-all duration-300 hover:scale-110 hover:text-accent/80 active:scale-95'
+					id="copyEmailIcon"
+					class="inline-block size-5 cursor-pointer text-accent transition-all duration-300 hover:scale-110 hover:text-accent/80 active:scale-95"
 				/>
 
-				<Check id='copiedEmailIcon' class='hidden size-5 text-accent' />
+				<Check id="copiedEmailIcon" class="hidden size-5 text-accent" />
 			</div>
 		</div>
 
@@ -71,36 +71,36 @@ const i18n = getI18N({ currentLocale: locale })
 </div>
 
 <script>
-	import { getI18N } from '@/languages/index'
-	import { $ } from '@/libs/dom-selector.ts'
+	import { getI18N } from "@/languages/index"
+	import { $ } from "@/libs/dom-selector.ts"
 
-	document.addEventListener('astro:page-load', () => {
-		const copyEmailIcon = $('#copyEmailIcon')
-		const copiedEmailIcon = $('#copiedEmailIcon')
-		const documentLocale = document.documentElement.lang || 'en'
+	document.addEventListener("astro:page-load", () => {
+		const copyEmailIcon = $("#copyEmailIcon")
+		const copiedEmailIcon = $("#copiedEmailIcon")
+		const documentLocale = document.documentElement.lang || "en"
 		const i18n = getI18N({ currentLocale: documentLocale })
 
-		copyEmailIcon?.addEventListener('click', () => {
-			copyEmailIcon?.classList.remove('inline-block')
-			copyEmailIcon?.classList.add('hidden')
-			copiedEmailIcon?.classList.add('inline-block')
-			copiedEmailIcon?.classList.remove('hidden')
+		copyEmailIcon?.addEventListener("click", () => {
+			copyEmailIcon?.classList.remove("inline-block")
+			copyEmailIcon?.classList.add("hidden")
+			copiedEmailIcon?.classList.add("inline-block")
+			copiedEmailIcon?.classList.remove("hidden")
 
-			navigator.clipboard.writeText('rikelvicapellan15@gmail.com')
+			navigator.clipboard.writeText("rikelvicapellan15@gmail.com")
 
 			window.toast({
 				dismissible: true,
 				icon: true,
-				location: 'bottom-center',
+				location: "bottom-center",
 				title: i18n.EMAIL_COPIED,
-				type: 'success',
+				type: "success",
 			})
 
 			setTimeout(() => {
-				copyEmailIcon?.classList.add('inline-block')
-				copyEmailIcon?.classList.remove('hidden')
-				copiedEmailIcon?.classList.remove('inline-block')
-				copiedEmailIcon?.classList.add('hidden')
+				copyEmailIcon?.classList.add("inline-block")
+				copyEmailIcon?.classList.remove("hidden")
+				copiedEmailIcon?.classList.remove("inline-block")
+				copiedEmailIcon?.classList.add("hidden")
 			}, 3000)
 		})
 	})

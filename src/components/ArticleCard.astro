@@ -18,33 +18,30 @@ const { cover, description, pageTitle, tags, title } = Astro.props
 const articleHref = resolveLocalizedHref(`/articles/${pageTitle}`, locale)
 ---
 
-<article class='group flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0'>
-	<div class='md:1/2 w-full'>
+<article class="group flex flex-col space-x-0 space-y-8 md:flex-row md:space-x-8 md:space-y-0">
+	<div class="md:1/2 w-full">
 		<div
-			class='relative col-span-6 row-span-5 flex transform flex-col items-center gap-8 overflow-clip rounded-xl border shadow-xl transition duration-500 ease-in-out sm:hover:border-slate-300 sm:hover:bg-slate-300/50 sm:group-hover:-translate-y-1 sm:group-hover:translate-x-1 sm:group-hover:shadow-2xl dark:border-slate-800 dark:sm:hover:border-slate-700 dark:sm:hover:bg-slate-800/50'
+			class="relative col-span-6 row-span-5 flex transform flex-col items-center gap-8 overflow-clip rounded-xl border border-slate-800 shadow-xl transition duration-500 ease-in-out sm:hover:border-slate-700 sm:hover:bg-slate-800/50 sm:group-hover:-translate-y-1 sm:group-hover:translate-x-1 sm:group-hover:shadow-2xl"
 		>
 			<img
 				src={cover}
 				alt={`Capelix' article ${title}`}
-				width='1280'
-				height='720'
-				class='h-full w-full object-cover object-top opacity-70 transition duration-500 sm:h-full sm:scale-110 sm:group-hover:scale-105'
+				width="1280"
+				height="720"
+				class="h-full w-full object-cover object-top opacity-70 transition duration-500 sm:h-full sm:scale-110 sm:group-hover:scale-105"
 			/>
 		</div>
 	</div>
 
-	<div class='flex w-full flex-col gap-2 overflow-hidden md:max-w-lg'>
-		<h1
-			class='text-2xl font-bold text-slate-800 dark:text-slate-200'
-			transition:name={`article-${pageTitle}-title`}
-		>
+	<div class="flex w-full flex-col gap-2 overflow-hidden md:max-w-lg">
+		<h1 class="text-2xl font-bold text-slate-200" transition:name={`article-${pageTitle}-title`}>
 			{title}
 		</h1>
 
-		<ul class='mb-2 flex flex-row gap-x-2'>
+		<ul class="mb-2 flex flex-row gap-x-2">
 			{
 				tags.map((tag) => (
-					<li class='text-accent'>
+					<li class="text-accent">
 						<Badge>{tag}</Badge>
 					</li>
 				))
@@ -52,15 +49,15 @@ const articleHref = resolveLocalizedHref(`/articles/${pageTitle}`, locale)
 		</ul>
 
 		<h2
-			class='clamp-4 mt-2 h-full overflow-hidden text-ellipsis whitespace-nowrap text-pretty text-sm text-secondary sm:text-base dark:text-primary'
+			class="clamp-4 mt-2 h-full overflow-hidden text-ellipsis whitespace-nowrap text-pretty text-sm text-primary sm:text-base"
 			transition:name={`article-${pageTitle}-content`}
 		>
 			{description}
 		</h2>
 
-		<footer class='mt-4 flex h-fit w-full items-end justify-start gap-x-4'>
-			<LinkButton target='_self' href={articleHref}>
-				<Book class='size-6' />
+		<footer class="mt-4 flex h-fit w-full items-end justify-start gap-x-4">
+			<LinkButton target="_self" href={articleHref}>
+				<Book class="size-6" />
 				{i18n.READ}
 			</LinkButton>
 		</footer>

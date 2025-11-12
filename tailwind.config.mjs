@@ -1,23 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
 		extend: {
 			colors: {
-				primary: '#a9b3c1',
-				secondary: '#64748b',
-				accent: '#0891b2',
-				main: '#155e75',
-				success: '#10b981',
-				warning: '#f59e0b',
-				glass: {
-					DEFAULT: 'rgba(255, 255, 255, 0.05)',
-					light: 'rgba(255, 255, 255, 0.1)',
-					dark: 'rgba(0, 0, 0, 0.3)',
-				},
+				primary: "#a9b3c1",
+				secondary: "#64748b",
+				accent: "#0891b2",
+				main: "#155e75",
+				success: "#10b981",
+				warning: "#f59e0b",
+				glass: "rgba(0, 0, 0, 0.3)",
 			},
 			fontFamily: {
-				ubuntu: ['Ubuntu', 'Onest Variable'],
+				ubuntu: ["Ubuntu", "Onest Variable"],
 			},
 		},
 	},

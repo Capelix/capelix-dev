@@ -25,16 +25,71 @@ export const getI18N = ({ currentLocale }: { currentLocale?: string }) => {
 
 type AstroCookies = {
 	get: (name: string) => { value: string } | undefined
+	set?: (
+		name: string,
+		value: string,
+		options?: {
+			path?: string
+			expires?: Date
+			maxAge?: number
+			sameSite?: 'strict' | 'lax' | 'none'
+			domain?: string
+			secure?: boolean
+			httpOnly?: boolean
+		}
+	) => void
 }
 
 type AstroLikeContext = {
 	currentLocale?: string
 	cookies?: AstroCookies
+	request?: Request
+}
+
+const getPreferredLocaleFromHeader = (headerValue?: string): Locale | undefined => {
+	if (!headerValue) return undefined
+
+	const languageTags = headerValue
+		.split(',')
+		.map((entry) => {
+			const [tag, qValue] = entry.trim().split(';q=')
+			const quality = qValue ? parseFloat(qValue) : 1
+			return { tag: tag.toLowerCase(), quality: Number.isFinite(quality) ? quality : 0 }
+		})
+		.filter((entry) => entry.tag.length > 0)
+		.sort((a, b) => b.quality - a.quality)
+
+	for (const { tag } of languageTags) {
+		const baseTag = tag.split('-')[0] as Locale
+		if (SUPPORTED_LOCALES.includes(baseTag)) {
+			return baseTag
+		}
+	}
+
+	return undefined
 }
 
 export const getActiveLocale = (context: AstroLikeContext): Locale => {
 	const cookieLocale = context.cookies?.get?.('lang')?.value
-	return normalizeLocale(cookieLocale ?? context.currentLocale)
+	if (cookieLocale) {
+		return normalizeLocale(cookieLocale)
+	}
+
+	const preferredLocale = getPreferredLocaleFromHeader(context.request?.headers.get('accept-language'))
+	const resolvedLocale = normalizeLocale(preferredLocale ?? context.currentLocale)
+
+	if (context.cookies?.set) {
+		const oneYearFromNow = new Date()
+		oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1)
+
+		context.cookies.set('lang', resolvedLocale, {
+			path: '/',
+			expires: oneYearFromNow,
+			sameSite: 'lax',
+		})
+	}
+
+	return resolvedLocale
 }
 
 export const stripLocaleFromPath = (path: string): string => {
