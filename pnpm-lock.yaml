@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@astrojs/internal-helpers@0.6.0':
+    hash: f03a271b1cef884ec06f45d5a16844552c5f3b5f25acdc641db22ff0f7d60b6d
+    path: patches/@astrojs__internal-helpers@0.6.0.patch
+
 importers:
 
   .:
@@ -3158,7 +3163,7 @@ snapshots:
 
   '@astrojs/compiler@2.8.1': {}
 
-  '@astrojs/internal-helpers@0.6.0': {}
+  '@astrojs/internal-helpers@0.6.0(patch_hash=f03a271b1cef884ec06f45d5a16844552c5f3b5f25acdc641db22ff0f7d60b6d)': {}
 
   '@astrojs/language-server@2.15.4(prettier-plugin-astro@0.14.1)(prettier@3.3.2)(typescript@5.5.4)':
     dependencies:
@@ -3188,7 +3193,7 @@ snapshots:
 
   '@astrojs/markdown-remark@6.2.0':
     dependencies:
-      '@astrojs/internal-helpers': 0.6.0
+      '@astrojs/internal-helpers': 0.6.0(patch_hash=f03a271b1cef884ec06f45d5a16844552c5f3b5f25acdc641db22ff0f7d60b6d)
       '@astrojs/prism': 3.2.0
       github-slugger: 2.0.0
       hast-util-from-html: 2.0.3
@@ -3263,7 +3268,7 @@ snapshots:
 
   '@astrojs/vercel@8.1.1(astro@5.4.2(@types/node@20.14.10)(jiti@1.21.6)(rollup@4.35.0)(typescript@5.5.4)(yaml@2.7.0))(react@18.3.1)(rollup@4.35.0)':
     dependencies:
-      '@astrojs/internal-helpers': 0.6.0
+      '@astrojs/internal-helpers': 0.6.0(patch_hash=f03a271b1cef884ec06f45d5a16844552c5f3b5f25acdc641db22ff0f7d60b6d)
       '@vercel/analytics': 1.5.0(react@18.3.1)
       '@vercel/edge': 1.2.1
       '@vercel/nft': 0.29.2(rollup@4.35.0)
@@ -4163,7 +4168,7 @@ snapshots:
   astro@5.4.2(@types/node@20.14.10)(jiti@1.21.6)(rollup@4.35.0)(typescript@5.5.4)(yaml@2.7.0):
     dependencies:
       '@astrojs/compiler': 2.10.4
-      '@astrojs/internal-helpers': 0.6.0
+      '@astrojs/internal-helpers': 0.6.0(patch_hash=f03a271b1cef884ec06f45d5a16844552c5f3b5f25acdc641db22ff0f7d60b6d)
       '@astrojs/markdown-remark': 6.2.0
       '@astrojs/telemetry': 3.2.0
       '@oslojs/encoding': 1.1.0
