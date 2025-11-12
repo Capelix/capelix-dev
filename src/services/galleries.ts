@@ -3,16 +3,13 @@ import { getImageDimensionsFromFile } from "@/libs/getImageSizes"
 import type { Gallery, GalleryPhoto, PhotoSelection } from "@/interfaces/gallery"
 import { hashPin } from "@/libs/pin"
 import { getSupabaseService } from "@/libs/supabase"
+import type { PostgrestResponse, PostgrestSingleResponse } from "@supabase/supabase-js"
 
 const photosBucket = import.meta.env.SUPABASE_STORAGE_BUCKET ?? "photos"
 
 function resolvePhotoPublicUrl(storagePath: string) {
 	const supabase = getSupabaseService()
-	const { data, error } = supabase.storage.from(photosBucket).getPublicUrl(storagePath)
-
-	if (error) {
-		throw new Error(`Failed to resolve public URL for ${storagePath}: ${error.message}`)
-	}
+	const { data } = supabase.storage.from(photosBucket).getPublicUrl(storagePath)
 
 	return data.publicUrl
 }
@@ -22,11 +19,11 @@ export async function findGalleryByPin(pin: string) {
 
 	const supabase = getSupabaseService()
 
-	const { data, error } = await supabase
-		.from<Gallery>('galleries')
-		.select('id,title,description,event_date,created_at,pin_hash')
-		.eq('pin_hash', hashedPin)
-		.single()
+	const { data, error } = (await supabase
+		.from("galleries")
+		.select("id,title,description,event_date,created_at,pin_hash")
+		.eq("pin_hash", hashedPin)
+		.single()) as PostgrestSingleResponse<Gallery>
 
 	if (error || !data) {
 		return null
@@ -40,11 +37,11 @@ export async function findGalleryByPin(pin: string) {
 export async function listGalleryPhotos(galleryId: string) {
 	const supabase = getSupabaseService()
 
-	const { data, error } = await supabase
-		.from<GalleryPhoto>('gallery_photos')
-		.select('id,gallery_id,image_code,storage_path,width,height,created_at')
-		.eq('gallery_id', galleryId)
-		.order('created_at', { ascending: true })
+	const { data, error } = (await supabase
+		.from("gallery_photos")
+		.select("id,gallery_id,image_code,storage_path,width,height,created_at")
+		.eq("gallery_id", galleryId)
+		.order("created_at", { ascending: true })) as PostgrestResponse<GalleryPhoto>
 
 	if (error) {
 		throw new Error(error.message)
@@ -59,11 +56,11 @@ export async function listGalleryPhotos(galleryId: string) {
 export async function listGallerySelections(galleryId: string) {
 	const supabase = getSupabaseService()
 
-	const { data, error } = await supabase
-		.from<PhotoSelection>('photo_selections')
-		.select('id,gallery_id,image_code,selected_at')
-		.eq('gallery_id', galleryId)
-		.order('selected_at', { ascending: true })
+	const { data, error } = (await supabase
+		.from("photo_selections")
+		.select("id,gallery_id,image_code,selected_at")
+		.eq("gallery_id", galleryId)
+		.order("selected_at", { ascending: true })) as PostgrestResponse<PhotoSelection>
 
 	if (error) {
 		throw new Error(error.message)
@@ -76,9 +73,9 @@ export async function saveGallerySelections(galleryId: string, imageCodes: strin
 	const supabase = getSupabaseService()
 
 	const { error: deleteError } = await supabase
-		.from('photo_selections')
+		.from("photo_selections")
 		.delete()
-		.eq('gallery_id', galleryId)
+		.eq("gallery_id", galleryId)
 
 	if (deleteError) {
 		throw new Error(deleteError.message)
@@ -93,7 +90,7 @@ export async function saveGallerySelections(galleryId: string, imageCodes: strin
 		image_code: code,
 	}))
 
-	const { error: insertError } = await supabase.from('photo_selections').insert(rows)
+	const { error: insertError } = await supabase.from("photo_selections").insert(rows)
 
 	if (insertError) {
 		throw new Error(insertError.message)
@@ -109,7 +106,7 @@ interface CreateGalleryInput {
 function generatePinCandidate(length = 6) {
 	return Array.from({ length })
 		.map(() => crypto.randomInt(0, 10))
-		.join('')
+		.join("")
 }
 
 async function generateUniquePin() {
@@ -120,9 +117,9 @@ async function generateUniquePin() {
 		const pinHash = hashPin(pin)
 
 		const { data, error } = await supabase
-			.from('galleries')
-			.select('id')
-			.eq('pin_hash', pinHash)
+			.from("galleries")
+			.select("id")
+			.eq("pin_hash", pinHash)
 			.limit(1)
 
 		if (error) {
@@ -134,23 +131,23 @@ async function generateUniquePin() {
 		}
 	}
 
-	throw new Error('Unable to generate a unique PIN. Please try again.')
+	throw new Error("Unable to generate a unique PIN. Please try again.")
 }
 
 export async function createGallery({ title, description, eventDate }: CreateGalleryInput) {
 	const supabase = getSupabaseService()
 	const { pin, pinHash } = await generateUniquePin()
 
-	const { data, error } = await supabase
-		.from('galleries')
+	const { data, error } = (await supabase
+		.from("galleries")
 		.insert({
 			title,
 			description: description ?? null,
 			event_date: eventDate ?? null,
 			pin_hash: pinHash,
 		})
-		.select('id,title,description,event_date,created_at')
-		.single()
+		.select("id,title,description,event_date,created_at")
+		.single()) as PostgrestSingleResponse<Gallery>
 
 	if (error) {
 		throw new Error(error.message)
@@ -162,21 +159,19 @@ export async function createGallery({ title, description, eventDate }: CreateGal
 export async function getGalleriesOverview() {
 	const supabase = getSupabaseService()
 
-	const { data: galleries, error } = await supabase
-		.from<Gallery>('galleries')
-		.select('id,title,description,event_date,created_at')
-		.order('created_at', { ascending: false })
+	const { data: galleries, error } = (await supabase
+		.from("galleries")
+		.select("id,title,description,event_date,created_at")
+		.order("created_at", { ascending: false })) as PostgrestResponse<Gallery>
 
 	if (error) {
 		throw new Error(error.message)
 	}
 
-	const [photosList, selectionsList] = await Promise.all([
-		supabase
-			.from<GalleryPhoto>('gallery_photos')
-			.select('id,gallery_id,image_code,storage_path,created_at'),
-		supabase.from<PhotoSelection>('photo_selections').select('id,gallery_id,image_code,selected_at'),
-	])
+	const [photosList, selectionsList] = (await Promise.all([
+		supabase.from("gallery_photos").select("id,gallery_id,image_code,storage_path,created_at"),
+		supabase.from("photo_selections").select("id,gallery_id,image_code,selected_at"),
+	])) as [PostgrestResponse<GalleryPhoto>, PostgrestResponse<PhotoSelection>]
 
 	if (photosList.error) {
 		throw new Error(photosList.error.message)
@@ -216,33 +211,41 @@ export async function getGalleriesOverview() {
 	})
 }
 
-export async function deleteGalleryPhoto({ galleryId, photoId }: { galleryId: string; photoId: string }) {
+export async function deleteGalleryPhoto({
+	galleryId,
+	photoId,
+}: {
+	galleryId: string
+	photoId: string
+}) {
 	const supabase = getSupabaseService()
 
-	const { data, error } = await supabase
-		.from<GalleryPhoto>('gallery_photos')
-		.select('id, storage_path')
-		.eq('id', photoId)
-		.eq('gallery_id', galleryId)
-		.single()
+	const { data, error } = (await supabase
+		.from("gallery_photos")
+		.select("id, storage_path")
+		.eq("id", photoId)
+		.eq("gallery_id", galleryId)
+		.single()) as PostgrestSingleResponse<GalleryPhoto>
 
 	if (error || !data) {
-		throw new Error(error?.message ?? 'Photo not found')
+		throw new Error(error?.message ?? "Photo not found")
 	}
 
-	const { error: deleteError } = await supabase.storage.from(photosBucket).remove([data.storage_path])
+	const { error: deleteError } = await supabase.storage
+		.from(photosBucket)
+		.remove([data.storage_path])
 	if (deleteError) {
 		throw new Error(deleteError.message)
 	}
 
-	const { error: dbDeleteError } = await supabase.from('gallery_photos').delete().eq('id', photoId)
+	const { error: dbDeleteError } = await supabase.from("gallery_photos").delete().eq("id", photoId)
 	if (dbDeleteError) {
 		throw new Error(dbDeleteError.message)
 	}
 }
 
 function getImageCodeFromFile(file: File) {
-	const baseName = file.name.replace(/\.[^/.]+$/, '').trim()
+	const baseName = file.name.replace(/\.[^/.]+$/, "").trim()
 
 	if (baseName.length > 0) {
 		return baseName
@@ -254,9 +257,9 @@ function getImageCodeFromFile(file: File) {
 function normalizeForStorage(value: string) {
 	return value
 		.trim()
-		.replace(/\s+/g, '-')
-		.replace(/[^a-zA-Z0-9-_]/g, '-')
-		.replace(/-+/g, '-')
+		.replace(/\s+/g, "-")
+		.replace(/[^a-zA-Z0-9-_]/g, "-")
+		.replace(/-+/g, "-")
 		.toLowerCase()
 }
 
@@ -272,22 +275,24 @@ export async function uploadGalleryPhoto({
 	const supabase = getSupabaseService()
 	const derivedCode = imageCode ?? getImageCodeFromFile(file)
 	const normalizedStorageCode = normalizeForStorage(derivedCode)
-	const extension = file.name.split('.').pop()?.toLowerCase() ?? 'jpg'
+	const extension = file.name.split(".").pop()?.toLowerCase() ?? "jpg"
 	const storagePath = `${galleryId}/${normalizedStorageCode}.${extension}`
 	const { width, height } = await getImageDimensionsFromFile(file)
 
-	const { error: uploadError } = await supabase.storage.from(photosBucket).upload(storagePath, file, {
-		cacheControl: '3600',
-		contentType: file.type,
-		upsert: true,
-	})
+	const { error: uploadError } = await supabase.storage
+		.from(photosBucket)
+		.upload(storagePath, file, {
+			cacheControl: "3600",
+			contentType: file.type,
+			upsert: true,
+		})
 
 	if (uploadError) {
 		throw new Error(uploadError.message)
 	}
 
 	const { data, error } = await supabase
-		.from('gallery_photos')
+		.from("gallery_photos")
 		.upsert(
 			{
 				gallery_id: galleryId,
@@ -296,9 +301,9 @@ export async function uploadGalleryPhoto({
 				width,
 				height,
 			},
-			{ onConflict: 'gallery_id,image_code' },
+			{ onConflict: "gallery_id,image_code" }
 		)
-		.select('id,gallery_id,image_code,storage_path,width,height,created_at')
+		.select("id,gallery_id,image_code,storage_path,width,height,created_at")
 		.single()
 
 	if (error) {
@@ -327,4 +332,3 @@ export async function uploadGalleryPhotos({
 
 	return results
 }
-

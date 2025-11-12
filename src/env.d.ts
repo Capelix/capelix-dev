@@ -1,10 +1,10 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-import type { ToastOptions } from './lib/toast'
+import type { ToastOptions } from "./lib/toast"
 
 interface Window {
-	getThemePreference(): 'dark' | 'light'
+	getThemePreference(): "dark" | "light"
 	toast({ ToastOptions }: ToastOptions): void
 }
 
