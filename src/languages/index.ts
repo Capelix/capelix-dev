@@ -1,5 +1,6 @@
 import english from '@/languages/en.json'
 import spanish from '@/languages/es.json'
+import type { AstroGlobal } from 'astro'
 
 export const LANG = {
 	ENGLISH: 'en',
@@ -23,22 +24,7 @@ export const getI18N = ({ currentLocale }: { currentLocale?: string }) => {
 	return english
 }
 
-type AstroCookies = {
-	get: (name: string) => { value: string } | undefined
-	set?: (
-		name: string,
-		value: string,
-		options?: {
-			path?: string
-			expires?: Date
-			maxAge?: number
-			sameSite?: 'strict' | 'lax' | 'none'
-			domain?: string
-			secure?: boolean
-			httpOnly?: boolean
-		}
-	) => void
-}
+type AstroCookies = AstroGlobal['cookies']
 
 type AstroLikeContext = {
 	currentLocale?: string
