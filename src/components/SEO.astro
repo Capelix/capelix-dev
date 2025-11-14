@@ -1,5 +1,5 @@
 ---
-import type { Preload } from '@/interfaces/preload'
+import type { Preload } from "@/interfaces/preload"
 
 interface Props {
 	title: string
@@ -11,61 +11,61 @@ interface Props {
 }
 
 const {
-	title = 'Web - Capelix',
+	title = "Web - Capelix",
 	description = "The Capelix' Website. Read stories, articles and comments about all you want to know. I build easy-to-use websites and Android apps, with fast technologies and UX/UI standards to improve user experience.",
 	preload,
-	canonical = 'https://capelix.dev/',
-	image = 'https://capelix.dev/images/embedded-img.avif',
-	locale = 'en',
+	canonical = "https://capelix.dev/",
+	image = "https://capelix.dev/images/embedded-img.avif",
+	locale = "en",
 } = Astro.props as Props
 
-const ogLocale = locale === 'es' ? 'es_ES' : 'en_US'
+const ogLocale = locale === "es" ? "es_ES" : "en_US"
 ---
 
 <title>{title}</title>
 
-<meta charset='UTF-8' />
-<meta name='description' content={description} />
-<meta name='generator' content={Astro.generator} />
-<meta name='viewport' content='width=device-width' />
-<meta name='theme-color' content='#020617' />
+<meta charset="UTF-8" />
+<meta name="description" content={description} />
+<meta name="generator" content={Astro.generator} />
+<meta name="viewport" content="width=device-width" />
+<meta name="theme-color" content="#020617" />
 
-<link rel='canonical' href={canonical} />
-<link rel='author' href='https://www.linkedin.com/in/Capelix' />
+<link rel="canonical" href={canonical} />
+<link rel="author" href="https://www.linkedin.com/in/Capelix" />
 
 {
-	preload?.map(({ href, as, type, rel = 'preload', crossorigin }) => (
+	preload?.map(({ href, as, type, rel = "preload", crossorigin }) => (
 		<link {rel} {href} {as} {type} {crossorigin} />
 	))
 }
 
 <meta
-	name='keywords'
-	content='astro, html, javascript, js, css, Capelix, portfolio, angular, rikelvi capellan, republica dominicana, dominican republic, developer, desarrollador web, web developer, blog, Capelix blog, projects, Capelix projects, rikelvi capellan projects, ts, typescript, components, anciano, corta, fama, historia, joven, leche, moraleja, relato, riquezas, sueños, vaca, short story'
+	name="keywords"
+	content="astro, html, javascript, js, css, Capelix, portfolio, angular, rikelvi capellan, republica dominicana, dominican republic, developer, desarrollador web, web developer, blog, Capelix blog, projects, Capelix projects, rikelvi capellan projects, ts, typescript, components, anciano, corta, fama, historia, joven, leche, moraleja, relato, riquezas, sueños, vaca, short story"
 />
 
-<meta name='twitter:card' content='summary_large_image' />
-<meta name='twitter:site' content='@Capelixxx' />
-<meta name='twitter:creator' content='@Capelixxx' />
-<meta name='twitter:title' content={title} />
-<meta name='twitter:description' content={description} />
-<meta name='twitter:image' content={new URL(image, Astro.url)} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@Capelixxx" />
+<meta name="twitter:creator" content="@Capelixxx" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={new URL(image, Astro.url)} />
 
-<meta property='og:image' content={new URL(image, Astro.url)} />
-<meta property='og:title' content={title} />
-<meta property='og:description' content={description} />
-<meta property='og:url' content={Astro.url} />
-<meta property='og:site_name' content='Web - Capelix' />
-<meta property='og:type' content='website' />
-<meta property='og:locale' content={ogLocale} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:site_name" content="Web - Capelix" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={ogLocale} />
 
-<meta name='robots' content='index, follow' />
-<meta name='googlebot' content='index, follow' />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow" />
 
-<link rel='icon' type='image/svg+xml' href='/favicon.ico' />
-<link rel='apple-touch-icon' href='/img/icons/apple-touch-icon.png' />
+<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/favicon.ico" />
 
-<link rel='icon' type='image/svg+xml' href='/favicon.ico' />
-<meta name='msapplication-config' content='/browserconfig.xml' />
+<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+<meta name="msapplication-config" content="/browserconfig.xml" />
 
-<link rel='manifest' href='/manifest.webmanifest' />
+<link rel="manifest" href="/manifest.webmanifest" />
