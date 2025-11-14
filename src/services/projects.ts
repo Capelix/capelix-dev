@@ -7,6 +7,8 @@ import Firebase from "@/icons/Firebase.astro"
 import Android from "@/icons/Android.astro"
 import { getI18N } from "@/locales/index"
 import NextJS from "@/icons/NextJS.astro"
+import Supabase from "@/icons/Supabase.astro"
+import ReactNative from "@/icons/ReactNative.astro"
 
 const TAGS = {
 	ASTRO: {
@@ -51,6 +53,18 @@ const TAGS = {
 		iconColor: "text-white",
 		icon: NextJS,
 	},
+	SUPABASE: {
+		name: "Supabase",
+		class: "bg-green-950 text-slate-200",
+		iconColor: "text-green-600",
+		icon: Supabase,
+	},
+	REACT_NATIVE: {
+		name: "React Native",
+		class: "bg-cyan-950 text-slate-200",
+		iconColor: "text-cyan-600",
+		icon: ReactNative,
+	},
 }
 
 export const projectsService = (currentLocale?: string): Project[] => {
@@ -62,7 +76,7 @@ export const projectsService = (currentLocale?: string): Project[] => {
 			description: i18n.EL_CHEVERE_WEB_DESCRIPTION,
 			imgUrl: "https://capelix.dev/projects/el-chevere.webp",
 			projectUrl: "https://fotoestudioelchevere.com/",
-			tags: [TAGS.ASTRO, TAGS.TAILWIND],
+			tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.SUPABASE],
 			gitCodeUrl: "https://github.com/Capelix/el-chevere-web",
 			alt: i18n.PROJECT_EL_CHEVERE_ALT,
 		},
@@ -70,9 +84,9 @@ export const projectsService = (currentLocale?: string): Project[] => {
 			id: "anjocc",
 			title: "ANJOCC",
 			description: i18n.ANJOCC_OFICIAL_DESCRIPTION,
-			imgUrl: "https://capelix.dev/projects/anjocc-web.webp",
+			imgUrl: "https://capelix.dev/projects/anjocc.webp",
 			projectUrl: "https://anjocc.com",
-			tags: [TAGS.ASTRO, TAGS.TAILWIND],
+			tags: [TAGS.ASTRO, TAGS.TAILWIND, TAGS.SUPABASE],
 			gitCodeUrl: "https://github.com/Capelix/anjocc-web",
 			alt: i18n.PROJECT_ANJOCC_ALT,
 		},
@@ -80,9 +94,9 @@ export const projectsService = (currentLocale?: string): Project[] => {
 			id: "gdn-pro",
 			title: "GDN Pro",
 			description: i18n.GDN_PRO_DESCRIPTION,
-			imgUrl: "",
+			imgUrl: "https://capelix.dev/projects/gdn-pro.webp",
 			projectUrl: "https://gdnpro.com",
-			tags: [TAGS.NEXTJS, TAGS.TAILWIND],
+			tags: [TAGS.NEXTJS, TAGS.TAILWIND, TAGS.SUPABASE],
 			gitCodeUrl: "https://github.com/gdnpro/gdnpro-nextjs",
 			alt: i18n.PROJECT_GDN_PRO_ALT,
 		},
@@ -93,7 +107,7 @@ export const projectsService = (currentLocale?: string): Project[] => {
 			imgUrl: "https://capelix.dev/projects/stop-trivia.webp",
 			projectUrl:
 				"https://play.google.com/store/apps/details?id=com.rilisentertainment.stoptriviaonline",
-			tags: [TAGS.KOTLIN, TAGS.FIREBASE, TAGS.ANDROID],
+			tags: [TAGS.REACT_NATIVE, TAGS.FIREBASE, TAGS.ANDROID],
 			gitCodeUrl: "https://github.com/Capelix/stop-trivia",
 			alt: i18n.PROJECT_STOP_TRIVIA_ALT,
 		},
@@ -103,7 +117,7 @@ export const projectsService = (currentLocale?: string): Project[] => {
 			description: i18n.GDN_STYLE_DESCRIPTION,
 			imgUrl: "https://capelix.dev/images/gdn-style.webp",
 			projectUrl: "https://gdnstyle.com",
-			tags: [TAGS.ASTRO, TAGS.TAILWIND],
+			tags: [TAGS.NEXTJS, TAGS.TAILWIND],
 			gitCodeUrl: "https://github.com/Capelix",
 			alt: i18n.PROJECT_GDN_STYLE_ALT,
 		},
