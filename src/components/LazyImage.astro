@@ -1,11 +1,11 @@
 ---
-const { src, alt, width, height, className = '' } = Astro.props
+const { src, alt, width, height, className = "" } = Astro.props
 ---
 
-<div class='relative h-auto w-full'>
+<div class="relative h-auto w-full">
 	<img
-		loading='lazy'
-		decoding='async'
+		loading="lazy"
+		decoding="async"
 		src={src}
 		srcset={src}
 		alt={alt}
@@ -16,14 +16,14 @@ const { src, alt, width, height, className = '' } = Astro.props
 	/>
 </div>
 
-<script type='module'>
+<script is:inline>
 	const observer = new IntersectionObserver(
 		(entries, observer) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					const img = entry.target
-					img.classList.remove('opacity-0')
-					img.classList.add('opacity-100')
+					img.classList.remove("opacity-0")
+					img.classList.add("opacity-100")
 					observer.unobserve(img)
 				}
 			})
@@ -33,7 +33,7 @@ const { src, alt, width, height, className = '' } = Astro.props
 		}
 	)
 
-	document.querySelectorAll('img[data-lazy]').forEach((img) => {
+	document.querySelectorAll("img[data-lazy]").forEach((img) => {
 		observer.observe(img)
 	})
 </script>

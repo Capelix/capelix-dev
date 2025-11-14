@@ -21,9 +21,8 @@ const articles = (await getCollection("articles")).slice(0, 4)
 	<div class="flex w-full flex-col gap-3">
 		{
 			articles.map((article) => {
-				const { slug, data } = article
-				const { author, category, cover, description, lang, pageTitle, tags, timestamp, title } =
-					data
+				const { data } = article
+				const { author, description, lang, pageTitle, timestamp, title } = data
 
 				return (
 					<HomeArticleCard
