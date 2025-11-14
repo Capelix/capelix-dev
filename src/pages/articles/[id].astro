@@ -1,90 +1,72 @@
 ---
 import SectionContainer from "@/components/SectionContainer.astro"
-import type { Preload } from "@/interfaces/preload"
 import Layout from "@/layouts/Layout.astro"
 import { getActiveLocale, getI18N, resolveLocalizedPath } from "@/locales/index"
-import { articlesService } from "@/services/articles"
+import { getCollection, render } from "astro:content"
 
-const { id } = Astro.params
+export const prerender = true
+
+export async function getStaticPaths() {
+	const articles = await getCollection("articles")
+
+	return articles.map((article: any) => ({
+		params: { id: article.slug },
+		props: { article },
+	}))
+}
+
+const { article } = Astro.props
+const { data } = article
+const { author, cover, description, lang, pageTitle, timestamp, title } = data
+const { Content } = await render(article)
+
 const locale = getActiveLocale(Astro)
 const i18n = getI18N({ currentLocale: locale })
-
-const stories = articlesService()
-const article = stories.find((article) => article.pageTitle === id)
 
 if (!article || article === undefined) {
 	return Astro.redirect(resolveLocalizedPath("/404"))
 }
-
-const preloadImages: Preload[] = [
-	{
-		as: "image",
-		href: article.cover,
-		type: "image/webp",
-		rel: "preload",
-	},
-]
 ---
 
 <Layout
-	title={`${article?.title} - Capelix' articles`}
-	description={`${article?.description} | ${i18n.AUTHOR}: ${article?.author} | ${i18n.LANGUAGE}: ${article?.lang}`}
+	title={`${title} - Capelix' articles`}
+	description={`${description} | ${i18n.AUTHOR}: ${author} | ${i18n.LANGUAGE}: ${lang}`}
 	canonical={new URL(
-		resolveLocalizedPath(`/articles/${article?.pageTitle}/`, locale),
+		resolveLocalizedPath(`/articles/${pageTitle}/`, locale),
 		"https://capelix.dev"
 	).toString()}
-	preload={preloadImages}
 >
 	<img
 		class="parallax absolute top-0 w-full translate-y-0 bg-cover bg-fixed bg-center opacity-5"
-		src={article?.cover}
-		alt={`Capelix' article ${article?.title}`}
+		src={cover}
+		alt={`Capelix' article ${title}`}
 		style="mask-image: linear-gradient(black 20%, transparent 80%);"
 	/>
 
 	<SectionContainer>
 		<div class="flex w-full max-w-4xl flex-col sm:w-11/12 md:w-8/12">
 			<header>
-				<h2
+				<h1
 					class="text-xl font-extrabold text-accent sm:text-3xl"
-					transition:name={`article-${article?.pageTitle}-title`}
+					transition:name={`article-${pageTitle}-title`}
 				>
-					{article?.title}
-				</h2>
+					{title}
+				</h1>
 			</header>
 
-			<div
-				class="mt-8 flex w-full flex-col gap-8"
-				transition:name={`article-${article?.pageTitle}-content`}
-			>
-				{
-					article?.content.map((section) => (
-						<div class="flex flex-col gap-2">
-							<h1 class="text-xl font-bold text-primary">{section.title}</h1>
-
-							<div id="articles-paragraphs" class="flex flex-col gap-4">
-								{section.paragraphs.map((paragraph) => (
-									<p
-										class={`${paragraph.startsWith('"') && paragraph.endsWith('"') ? "text-right" : "text-left"} text-pretty text-primary/80`}
-									>
-										{paragraph}
-									</p>
-								))}
-							</div>
-						</div>
-					))
-				}
+			<div class="prose prose-invert mt-8 w-full" transition:name={`article-${pageTitle}-content`}>
+				<Content />
 			</div>
 
 			<footer
 				class="mt-8 flex w-full flex-col items-end justify-center text-xs italic text-secondary"
 			>
 				<span>
-					{article?.timestamp}
+					{timestamp}
 				</span>
 
 				<span>
-					{i18n.AUTHOR}: {article?.author} | {i18n.LANGUAGE}: {article?.lang}
+					{i18n.AUTHOR}: {author} | {i18n.LANGUAGE}: {lang}
 				</span>
 			</footer>
 		</div>
@@ -92,17 +74,9 @@ const preloadImages: Preload[] = [
 </Layout>
 
 <script>
-	import { $, $$ } from "@/libs/dom-selector"
+	import { $ } from "@/libs/dom-selector"
 
-	document.addEventListener("astro:page-load", () => {
-		const paragraphs = $$("#articles-paragraphs p")
-
-		paragraphs.forEach((paragraph) => {
-			var text = paragraph.innerHTML
-			var textItalic = text.replace(/"([^"]*)"/g, '<b><i>"$1"</i></b>')
-			paragraph.innerHTML = textItalic
-		})
-
+	document.addEventListener("DOMContentLoaded", () => {
 		window.addEventListener("scroll", () => {
 			const parallax = $(".parallax")
 			const offset = window.scrollY

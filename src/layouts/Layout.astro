@@ -13,7 +13,7 @@ import { getActiveLocale } from "@/locales/index"
 import "@fontsource-variable/onest"
 import "@fontsource/ubuntu"
 import SpeedInsights from "@vercel/speed-insights/astro"
-import { ViewTransitions } from "astro:transitions"
+import { ClientRouter } from "astro:transitions"
 
 interface Props {
 	title: string
@@ -38,7 +38,7 @@ const locale = getActiveLocale(Astro)
 			preload={preload}
 			title={title}
 		/>
-		<ViewTransitions />
+		<ClientRouter />
 	</head>
 	<body class="relative overflow-x-hidden">
 		<SpeedInsights />

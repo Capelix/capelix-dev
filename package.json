@@ -29,6 +29,7 @@
     "resend": "^6.1.2"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.19",
     "@astrojs/check": "^0.9.4",
     "@astrojs/tailwind": "^6.0.0",
     "@astrojs/vercel": "^8.1.1",
